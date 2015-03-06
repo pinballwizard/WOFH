@@ -1,0 +1,426 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>m-window</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <link rel="stylesheet" type="text/css" href="style/modal.css">
+        <link rel="stylesheet" type="text/css" href="style/scrollpane.css">
+        <link rel="stylesheet" type="text/css" href="style/icons.css">
+        <link rel="stylesheet" type="text/css" href="style/backgrounds+buttons.css">
+        <script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="script/doT.min.js"></script>
+        <script type="text/javascript" src="script/jquery.mousewheel.js"></script>
+        <script type="text/x-dot-template" id="armyscript">
+            <div class="army-city detail-mod-bl">
+                {{ for (var type in d.army) { }}
+                <div class="s-row">
+                    <div class="s-cell">{{=d.army_name[type]}}</div>
+                    <div class="tooltip-row">
+                        {{ for (var kind in d.army[type]) { }}
+                        <div class="all-units">
+                            <span class="units {{=d.army[type][kind].icon}}"></span>
+                            <span>{{=d.army[type][kind].count}}</span>
+                        </div>
+                        {{ } }}
+                    </div>
+                </div>
+                {{ } }}
+            </div>
+            <div class="h"><span class="h2">Погибшие</span></div>
+            <div class="dead detail-mod-bl">
+                {{ for (var type in d.army) { }}
+                <div class="s-row">
+                    <div class="s-cell">{{=d.army_name[type]}}</div>
+                    <div class="tooltip-row">
+                        {{ for (var kind in d.army[type]) { }}
+                        <div class="all-units">
+                            <span class="units {{=d.army[type][kind].icon}}"></span>
+                            <span>{{=d.army[type][kind].dead}}</span>
+                        </div>
+                        {{ } }}
+                    </div>
+                </div>
+                {{ } }}
+            </div>
+            <div class="h"><span class="h2">Выжившие</span></div>
+            <div class="survivors detail-mod-bl">
+                {{ for (var type in d.army) { }}
+                <div class="s-row">
+                    <div class="s-cell">{{=d.army_name[type]}}</div>
+                    <div class="tooltip-row">
+                        {{ for (var kind in d.army[type]) { }}
+                        <div class="all-units">
+                            <span class="units {{=d.army[type][kind].icon}}"></span>
+                            <span>{{=d.army[type][kind].survive}}</span>
+                        </div>
+                        {{ } }}
+                    </div>
+                </div>
+                {{ } }}
+            </div>
+        </script>
+        <script type="text/x-dot-template" id="tooltipscript">
+            <div class="tooltip tooltip-{{=d.townname}}">
+                Военный бонус<span class="bonus"> {{=d.war_bonus}}</span><br />
+                <div class="army-city mod-bl">
+                    {{ for (var type in d.army) { }}
+                    <div class="tooltip-row">
+                        {{ for (var kind in d.army[type]) { }}
+                        <div class="all-units">
+                            <span class="units {{=t.army[type][kind].icon}}"></span>
+                            <span>{{=d.army[type][kind].count}}</span>
+                        </div>
+                        {{ } }}
+                    </div>
+                    {{ } }}
+                </div>
+                <a href="#" class="modal-details-a">Нажми для подробностей</a>
+            </div>
+        </script>
+        <script type="text/x-dot-template" id="detailscript">
+            <div class="details-army">
+                <div class="m-bgr">
+                    <header>
+                        <div class="bg-left_1"></div>
+                        <div class="bg-right_1"></div>
+                        <div class="clear-layer_1">
+                            <div class="h1"><h1><div class="cities {{=it.where.color}}"></div> {{=d.townname}}</h1></div>
+                            <div class="button-box">
+                                <input type="button" class="close4" value="" name="close"/>
+                            </div>
+                        </div>
+                    </header>
+                    <article class="det-art">
+                        <div class="bg-left_3"></div>
+                        <div class="bg-right_3"></div>
+                        <div class="bg-bot_3"></div>
+                        <div class="bg-left_3-bot"></div>
+                        <div class="bg-right_3-bot"></div>
+                        <div class="clear-layer_5">
+                            <div class="name-block">
+                                <div class="image img-pos {{=d.side_image}}">
+                                    <div class="stick"></div>
+                                </div>
+                                <table class="name-table m-table">
+                                    <colgroup class="logo"></colgroup>
+                                    <colgroup></colgroup>
+                                    <tr>
+                                        <td class="player-logo"><div class="mens race-{{=it.where.race}}"></div></td>
+                                        <td class="player-name">{{=d.player}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="country-logo logo"><div class="flags {{=it.where.flag}}"></div></td>
+                                        <td class="country-name">{{=d.country}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="h"><span class="h2"> Военный бонус:<span class="bonus">{{=d.war_bonus}}</span></span></div>
+                            <div class="h"><span class="h2"> Армия</span></div>
+                            {{#def.armysc}}
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </script>
+        <script id="script_body" type="text/x-dot-template">
+            <div class="main">
+                <header>
+                    <div class="bg-left_1"></div>
+                    <div class="bg-right_1"></div>
+                    <div class="clear-layer_1">
+                        <div class="h1"><h1>Военный отчет - <div class="cities {{=it.where.color}}"></div> {{=it.where.townname}}</h1></div>
+                        <div class="button-box">
+                            <input type="button" class="share" value="" name="share" title="Доступ к отчёту"/>
+                            <input type="button" class="close" value="" name="close" title="Закрыть"/>
+                        </div>
+                    </div>
+                </header>
+                <div class="info-row">
+                    <div class="bg-left_2"></div>
+                    <div class="bg-right_2"></div>
+                    <div class="clear-layer_2">
+                        <table class="info-table">
+                            <colgroup class="info-column_1"></colgroup>
+                            <colgroup class="info-column_2"></colgroup>
+                            <colgroup class="info-column_3"></colgroup>
+                            <tr>
+                                <td>Чей:</td>
+                                <td><div class="mens race-{{=it.owner.race}}"></div> <a>{{=it.owner.player}}</a></td>
+                                <td class="time-cell">Время:{{=it.time}}</td>
+                            </tr>
+                            <tr>
+                                <td>Тема:</td>
+                                <td><div class="cities {{=it.who.color}}"></div> <a>{{=it.who.townname}}</a> (<div class="mens race-{{=it.who.race}}"></div> <a>{{=it.who.player}}</a>) напал на <div class="cities {{=it.where.color}}"></div> <a>{{=it.where.townname}}</a> (<div class="mens race-{{=it.where.race}}"></div> <a>{{=it.where.player}}</a>)</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <article>
+                    <div class="bg-left_3"></div>
+                    <div class="bg-right_3"></div>
+                    <div class="bg-bot_3"></div>
+                    <div class="bg-left_3-bot"></div>
+                    <div class="bg-right_3-bot"></div>
+                    <div class="clear-layer_3">
+                        <div class="center-border"></div>
+                        <div class="left-part half">
+                            <div class="def-name name-block">
+                                <div class="img-def image">
+                                    <div class="stick"></div>
+                                </div>
+                                <table class="def-table name-table">
+                                    <colgroup class="logo-def" align="right"></colgroup>
+                                    <colgroup class="def-title" align="left"></colgroup>
+                                    <tr>
+                                        <td class="def city-logo logo"><div class="cities {{=it.where.color}}"></div></td>
+                                        <td class="def city-name"><a>{{=it.where.townname}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="def player-logo logo"><div class="mens race-{{=it.where.race}}"></div></td>
+                                        <td class="def player-name"><a>{{=it.where.player}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="def country-logo logo"><div class="flags {{=it.where.flag}}"></div></td>
+                                        <td class="def country-name"><a>{{=it.where.country}}</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="all-army all-def h">
+                                <span class="h2">Вся армия защиты -
+                                    {{? it.battle_def }}
+                                        <span class="status-win">Победа</span>
+                                    {{?? !it.battle_def }}
+                                        <span class="status-lose">Поражение</span>
+                                    {{?}}
+                                </span>
+                            </div>
+                            <div class="army-block def-army">
+                                <div class="army">
+                                    <div class="scrollbox">
+                                        <div class="opac-bg roll">^</div>
+                                        {{~ it.defenders :t}}
+                                        {{ for(var type in t.army) { }}
+                                        {{ for (var kind in t.army[type]) { }}
+                                        <div class="all-units">
+                                            <span class="units {{=t.army[type][kind].icon}}"></span>
+                                            <span>{{=t.army[type][kind].count}}</span>
+                                        </div>
+                                        {{ } }}
+                                        {{ } }}
+                                        {{~}}
+                                    </div>
+                                    <div class="scroll">
+                                        <div class="drag"></div>
+                                    </div>
+                                    <div class="mist-army">
+                                        <div class="mist"></div>
+                                        <div class="show-army-button">+ <div class="icon soldier"></div>{{=it.def_army}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="h2 none">Нет</div>
+                            <div class="def-title sides h">
+                                <span class="h2">Защитники</span>
+                            </div>
+                            <div class="def-persons persons">
+                                {{~ it.defenders :d}}
+                                    <div class="def-person">
+                                        <div class="opac-bg person person-{{=d.townname}}">
+                                            <div class="flags {{=d.flag}}"></div>
+                                            <div class="cities {{=d.color}}"></div>
+                                            <a>{{=d.townname}}</a>
+                                            (<div class="mens race-{{=d.race}}"></div> <a>{{=d.player}}</a>) - <div class="icon soldier"></div> {{=d.was_all}}
+                                        </div>
+                                        {{#def.tooltipsc}}
+                                        {{#def.detailsc}}
+                                    </div>
+                                {{~}}
+                            </div>
+                            <div class="destroy h">
+                                <span class="h2">Разрушения</span>
+                            </div>
+                            <div class="damage-block">
+                                {{~ it.buildings :b}}
+                                    <div class="damage-item">
+                                        <div class="icon-cell">
+                                            <div class="icon-item {{=b.icon}}">
+                                                <div class="level">{{=b.lvl}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="damage-text">
+                                            <span>{{=b.type}}</span>
+                                            <br/>
+                                            {{? !b.damage}}
+                                                <span class="status-lose">Разрушено</span>
+                                            {{?? b.damage}}
+                                                <span>{{=b.damage}} ур.</span>
+                                            {{?}}
+                                        </div>
+                                    </div>
+                                {{~}}
+                            </div>
+                            <div class="loot h">
+                                <span class="h2">Награблено</span>
+                            </div>
+                            <div class="loot-block">
+                                {{~ it.loot :l}}
+                                    <div class="loot-item">
+                                        <div class="icon-{{=l.type}}"></div><span>{{=l.number}}</span>
+                                    </div>
+                                {{~}}
+                            </div>
+                        </div>
+                        <div class="right-part half">
+                            <div class="att-name name-block">
+                                <table class="att-table name-table">
+                                    <colgroup class="logo-att"></colgroup>
+                                    <colgroup class="att-title"></colgroup>
+                                    <tr>
+                                        <td class="att city-logo logo"><div class="cities {{=it.who.color}}"></div></td>
+                                        <td class="att city-name"><a>{{=it.who.townname}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="att player-logo logo"><div class="mens race-{{=it.who.race}}"></div></td>
+                                        <td class="att player-name"><a>{{=it.who.player}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="att country-logo logo"><div class="flags {{=it.who.flag}}"></div></td>
+                                        <td class="att country-name"><a>{{=it.who.country}}</a></td>
+                                    </tr>
+                                </table>
+                                <div class="img-cell">
+                                    <div class="img-att image img-pos">
+                                        <div class="stick"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="all-army all-att h">
+                                <span class="h2">Вся армия нападения -
+                                    {{? it.battle_att }}
+                                        <span class="status-win">Победа</span>
+                                    {{?? !it.battle_att }}
+                                        <span class="status-lose">Поражение</span>
+                                    {{?}}
+                                </span>
+                            </div>
+                            <div class="multi-army">
+                                <div class="army-block">
+                                    <div class="army">
+                                        <div class="scrollbox">
+                                            <div class="opac-bg roll">^</div>
+                                            {{~ it.attackers :t}}
+                                            {{ for(var type in t.army) { }}
+                                            {{ for (var kind in t.army[type]) { }}
+                                            <div class="all-units">
+                                                <span class="units {{=t.army[type][kind].icon}}"></span>
+                                                <span>{{=t.army[type][kind].count}}</span>
+                                            </div>
+                                            {{ } }}
+                                            {{ } }}
+                                            {{~}}
+                                        </div>
+                                        <div class="scroll">
+                                            <div class="drag"></div>
+                                        </div>
+                                        <div class="mist-army">
+                                            <div class="mist"></div>
+                                            <div class="show-army-button">+ <div class="icon soldier"></div> {{=it.att_army}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="att-title sides h">
+                                    <span class="h2">Нападающие</span>
+                                </div>
+                                <div class="att-persons persons">
+                                    {{~ it.attackers :d}}
+                                    <div class="att-person">
+                                        <div class="opac-bg person">
+                                            <div class="flags {{=d.flag}}"></div>
+                                            <div class="cities {{=d.color}}"></div>
+                                            <a>{{=d.townname}}</a>
+                                            (<div class="mens race-{{=d.race}}"></div> <a>{{=d.player}}</a>) - <div class="icon soldier"></div> {{=d.was_all}}
+                                        </div>
+                                        {{#def.tooltipsc}}
+                                        {{#def.detailsc}}
+                                    </div>
+                                    {{~}}
+                                </div>
+                            </div>
+                            <div class="single-army">
+                                {{#def.armysc}}
+                            </div>
+                        </div>
+                    </div>
+                    <footer>
+                        <div class="bg-left_4"></div>
+                        <div class="bg-right_4"></div>
+                        <div class="clear-layer_4 flex-cont">
+                            <div class="button-block bb1">
+                                <div class="bgl bgl1"></div>
+                                <div class="bgr bgr1"></div>
+                                <input type="button" name="repeat" class="repeat button" value="Посмотреть повтор боя"/>
+                            </div>
+                            <div class="button-block bb2">
+                                <div class="bgl bgl2"></div>
+                                <input type="button" name="archive" class="archive button" value="Добавить в архив"/>
+                                <div class="bgr bgr2"></div>
+                            </div>
+                            <div class="button-block bb3">
+                                <div class="bgl bgl3"></div>
+                                <input type="button" name="close2" class="close2 button" value="Закрыть"/>
+                                <div class="bgr bgr3"></div>
+                            </div>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+            <div class="modal-report">
+                <div class="m-bgr">
+                    <header>
+                        <div class="bg-left_1"></div>
+                        <div class="bg-right_1"></div>
+                        <div class="clear-layer_1">
+                            <div class="h1"><h1>Доступ к отчету</h1></div>
+                            <div class="button-box">
+                                <input type="button" class="close3" value="" name="close"/>
+                            </div>
+                        </div>
+                    </header>
+                    <article class="rep-art">
+                        <div class="bg-left_3"></div>
+                        <div class="bg-right_3"></div>
+                        <div class="bg-bot_3"></div>
+                        <div class="bg-left_3-bot"></div>
+                        <div class="bg-right_3-bot"></div>
+                        <div class="clear-layer_3">
+                            <output class="report_number"></output>
+                            <br /><br />
+                            <p>Используй этот код в тексте для ссылки на этот отчёт</p>
+                            <input type="radio" name="open" checked="checked" value="open" id="open" /> <label for="open"><span>Открыть доступ к отчёту</span><br /></label>
+                            <input type="checkbox" name="attack-box" checked="checked" value="att-box" id="attack-box" /><label for="attack-box"><span class="option">Нападающие</span></label><br />
+                            <input type="checkbox" name="def-box" checked="checked" value="def-box" id="def-box" /><label for="def-box"><span class="option">Защищающиеся</span></label><br />
+                            <input type="checkbox" name="atar-box" checked="checked" value="atar-box" id="atar-box" /><label for="atar-box"><span class="option">Армия атаки</span></label><br />
+                            <input type="checkbox" name="defar-box" checked="checked" value="defar-box" id="defar-box" /><label for="defar-box"><span class="option">Армия защиты</span></label><br />
+                            <div class="button-block bb1 agr">
+                                <div class="bgl bgl4"></div>
+                                <div class="bgr bgr4"></div>
+                                <input type="button" name="agreed" class="agreed button" value="Принять"/>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="script/modal.js"></script>
+        <button class="case1" onClick="ck('data1.json');">case1</button>
+        <button class="case2" onClick="ck('data2.json');">case2</button>
+        <button class="case3" onClick="ck('data3.json');">case3</button>
+        <button class="case4" onClick="ck('data4.json');">case4</button>
+    	<div id="content"></div>
+    </body>
+</html>

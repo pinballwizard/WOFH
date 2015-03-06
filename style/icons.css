@@ -1,0 +1,132 @@
+.cities{
+    display: inline-block;
+	width:13px;
+	height:12px;
+	background: url('images/i_tpwetc_1.png') no-repeat;
+}
+.beige{
+	background-position:0 0;
+}
+.blue{
+	background-position:-14px 0;
+}
+.green{
+	background-position:-28px 0;
+}
+.yellow{
+	background-position:-42px 0;
+}
+.pink{
+	background-position:-56px 0;
+}
+
+.mens{
+    display: inline-block;
+	width:9px;
+	height:11px;
+	background: url('images/i_tpwetc_1.png') no-repeat;
+}
+.race-white{
+	background-position:0 -13px;
+}
+.race-asian{
+	background-position:-10px -13px;
+}
+.race-black{
+	background-position:-20px -13px;
+}
+.race-red{
+	background-position:-30px -13px;
+}
+
+.units{
+    display: table-cell;
+	width: 23px;
+	height: 23px;
+	background: url('images/units_s2.png') no-repeat;
+}
+.eleph{
+	background-position:-276px 0;
+}
+.sword{
+	background-position:-782px 0;
+}
+.armor{
+	background-position:-758px 0;
+}
+.tank{
+	background-position:-763px 0;
+}
+.bomb{
+	background-position:-713px 0;
+}
+.club{
+	background-position:-298px 0;
+}
+.spear{
+	background-position:-69px 0;
+}
+
+.bow{
+	background-position:-552px 0;
+}
+.gun{
+	background-position:-529px 0;
+}
+.gun1{
+	background-position:-506px 0;
+}
+.arb{
+	background-position:-690px 0;
+}
+.arrow{
+	background-position:-851px 0;
+}
+
+.horse{
+	background-position:-322px 0;
+}
+.wheel{
+	background-position:-391px 0;
+}
+.aleb{
+	background-position:-667px 0;
+}
+.horse2{
+	background-position:-1104px 0;
+}
+.hsword{
+	background-position:-874px 0;
+}
+
+
+.flags {
+    display: inline-block;
+	width: 21px;
+	height: 14px;
+	background-repeat: no-repeat;
+}
+.flag1{
+	background-image:url('images/-b2aanloloaeaaaaaaar.gif');
+}
+.flag2{
+	background-image:url('images/-b2baaloloaaalaaaiaa.gif');
+}
+.flag3{
+	background-image:url('images/-b2baaloloacaaaaauaa.gif');
+}
+.flag4{
+	background-image:url('images/-b2baaloloadagaaaiaa.gif');
+}
+.flag5{
+	background-image:url('images/-b2baaloloaeadaaasaa.gif');
+}
+.flag6{
+	background-image:url('images/-b2baaloloagaaaaauaa.gif');
+}
+.flag7{
+	background-image:url('images/-b2caaloloafacaaaraa.gif');
+}
+.flag8{
+	background-image:url('images/-b2caaloloaaauaaafaa.gif');
+}

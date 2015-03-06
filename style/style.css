@@ -1,0 +1,356 @@
+body{
+	background: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:11pt;
+}
+.main{
+    width: 1035px;
+    height: auto;
+    margin: auto;
+    position: relative;
+    opacity: 0;
+    z-index: 10;
+    display: none;
+}
+
+div .h1{
+	height: auto;
+	width:100%;
+	position:absolute;
+	text-align:center;
+	z-index: 1;
+}
+
+h1{
+	color: #FFFFFF;
+	font-size: 12pt;
+	text-shadow: 1px 1px 3px black;
+	text-align:center;
+	vertical-align:middle;
+}
+a{
+	text-decoration: underline;
+    cursor: pointer;
+    color: black;
+}
+
+.info-table{
+	width:100%;
+	height:auto;
+	padding-top:7px;
+	padding-left: 10px;
+}
+.info-column_1{
+	width:50px;
+	height: auto;
+}
+.info-column_2{
+	width:700px;
+	height: auto;
+}
+.time-cell{
+	text-align:right;
+	padding-right: 10px;
+}
+.clear-layer_3{
+	position:absolute;
+	width:inherit;
+	height:auto;
+	margin-bottom: 60px;
+}
+
+.half{
+	display:block;
+	width:50%;
+	height:inherit;
+}
+
+.left-part{
+	float:left;
+}
+
+.right-part{
+	float:right;
+}
+
+.name-block{
+	width:100%;
+	height: 65px;
+}
+
+.image{
+	display:block;
+	float:left;
+	margin: 0px 15px;
+	width:150px;
+	height: 60px;
+}
+
+.stick{
+	position:relative;
+	top:100%;
+	width:inherit;
+	height: 3px;
+	background: url('images/simhr.png') no-repeat;
+}
+
+.img-def{
+	background: url('images/simd.png') no-repeat 50% 100%;
+}
+.img-att{
+	background:url('images/sima.png') no-repeat 50% 100%;
+}
+.img-pos{
+    position: absolute;
+    right: 15px;
+    float:right;
+}
+
+.name-table{
+	font-size:12pt;
+	margin-top:10px;
+}
+
+.def-table{
+	float:left;
+}
+.att-table{
+	float: right;
+    margin-right: 200px;
+}
+
+.logo{
+	text-align: right;
+}
+.all-army{
+    margin-top: 20px;
+}
+
+.all-army,
+.sides,
+.destroy,
+.loot{
+	width:100%;
+	height: 20px;
+	margin-bottom: 5px;
+}
+.all-att,
+.att-title{
+	text-align: right;
+}
+
+.h2{
+	font-size:20px;
+    font-weight: bold;
+	padding: 0px 15px;
+}
+.all-def>.h2{
+	float: left;
+	margin: 0;
+}
+
+
+.army{
+    position:relative;
+    width:100%;
+    height:100px;
+    overflow-y: hidden;
+    background: url('images/bg2.jpg') repeat;
+    box-shadow: 1px 1px 3px 0 #50506d;
+}
+.none{
+    display: none;
+    height: auto;
+    width: 89%;
+    margin-left: 15px;
+    background: url('images/bg2.jpg') repeat;
+}
+
+.all-units{
+    vertical-align: middle;
+    display: inline-block;
+    margin: 5px;
+}
+.all-units>span:last-child{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.army-block{
+	width:95%;
+	height:100px;
+	margin: 0 15px;
+	overflow-y:hidden;
+}
+.mist-army{
+	position:absolute;
+	top:70%;
+	width:100%;
+	height: 30%;
+	z-index: 2;
+}
+
+.status-win{
+    color: green;
+}
+
+.status-lose{
+    color: red;
+}
+
+.mist{
+	position:absolute;
+	width:100%;
+	height: 100%;
+	background: linear-gradient(to bottom, transparent, #E8BB77);
+	opacity: 1;
+}
+
+.show-army-button{
+	position:relative;
+	margin-right:10px;
+	float: right;
+	z-index: 3;
+	opacity: unset;
+}
+
+.att-person,
+.def-person{
+    margin: 2px 0;
+    display: inline-block;
+}
+
+.persons,
+.damage-block,
+.loot-block{
+	width: 95%;
+	height: auto;
+    /*max-height: 85px;*/
+	margin: 0 15px;
+    overflow-y: hidden;
+}
+
+.opac-bg,
+.show-army-button{
+	display:inline-block;
+	width:auto;
+	height:auto;
+	max-height:20px;
+	padding: 3px 5px;
+	background: url('images/bg2.jpg') repeat;
+	border:1px solid #E8BB77;
+	border-radius: 7px;
+	box-shadow:0px 0px 5px 2px #CBA05B;
+    cursor: pointer;
+}
+.tooltip{
+	visibility:hidden;
+    position: absolute;
+	width:auto;
+	height:auto;
+	padding:5px;
+	text-align:center;
+	color:black;
+    overflow-y: hidden;
+	background-color: #CBA05B;
+	border: 1px solid black;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+	z-index: 100;
+}
+.tooltip-row{
+    width: 100%;
+    max-width: 400px;
+    margin: 2px 2px;
+    height: 30px;
+    overflow: hidden;
+}
+
+/*.person:hover .tooltip{*/
+	/*visibility: visible;*/
+/*}*/
+
+/*.damage-block{*/
+	/*display:table;*/
+    /*overflow-y: hidden;*/
+/*}*/
+
+.icon-cell{
+	display:table-cell;
+}
+
+.icon-item{
+	display:block;
+	width: 45px;
+	height: 46px;
+	margin:0 5px;
+	border:3px solid #ac6120;
+	box-shadow: 0 0 0 1px #A83D07;
+}
+
+.altar{
+    background:url('images/1_2.png') no-repeat;
+}
+
+.trench{
+    background:url('images/4_1.png') no-repeat;
+}
+
+.station{
+    background:url('images/25_1.png') no-repeat;
+}
+
+.level{
+	position: relative;
+	left:25%;
+	bottom:-36px;;
+	width: 50%;
+	height:30%;
+	background-color: olive;
+	box-shadow:inset 1px 1px 3px 1px black;
+	text-align: center;
+}
+.damage-item{
+    display: inline-block;
+	width: auto;
+	height: inherit;
+	padding:10px;
+}
+
+.damage-text{
+	display:table-cell;
+	vertical-align: middle;
+	width: auto;
+	height: inherit;
+	padding: 0 5px;
+}
+
+.loot-item{
+	display:inline-block;
+	margin: 10px;
+}
+
+.loot-item>div{
+	display:inline-block;
+	width: 17px;
+	height: 18px;
+	margin-right: 5px;
+}
+
+.icon-food{
+	background: url('images/resb_trns.png') no-repeat 0 0;
+}
+.icon-wood{
+	background: url('images/resb_trns.png') no-repeat -18px 0;
+}
+.icon-iron{
+	background: url('images/resb_trns.png') no-repeat -36px 0;
+}
+.icon{
+	display:inline-block;
+}
+.soldier{
+	width:9px;
+	height: 11px;
+	margin:1px 1px 0px;
+	background: url('images/i_tpwetc_1.png') no-repeat -20px -13px;
+}

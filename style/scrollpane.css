@@ -1,0 +1,42 @@
+.scrollbox{
+	position: relative;
+    top: 5px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background:url('images/bg2.jpg') repeat;
+	/*box-shadow:3px 3px 6px 0px black;*/
+	/*z-index: 100;*/
+    display: inline-block;
+}
+
+.scroll{
+    position: absolute;
+    width: 4%;
+    height: 100%;
+    right:0;
+    background-image: linear-gradient(to right, transparent 47%, #000 47%, #000 50%, transparent 51%, transparent 100%);
+    display: inline-block;
+    visibility: hidden;
+}
+
+.drag{
+    top: 5%;
+    width: 100%;
+    height: 10px;
+    background: #E8BB77;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0px 1px #000;
+    position: relative;
+}
+
+.roll{
+    width: 20px;
+    height: 10px;
+    right: 4%;
+    position: absolute;
+	text-align:center;
+    z-index: 110;
+    display: none;
+    box-shadow: 1px 1px 2px 0px #000;
+}
